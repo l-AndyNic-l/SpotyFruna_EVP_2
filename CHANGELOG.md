@@ -3,6 +3,12 @@
 Todos los cambios notables de este proyecto estarán documentados en este archivo.
 
 ---
+
+## [v0.1.3] 28-04-2026: HTTP Requester via Python
+Implementación de script/programa mediante Python para realizar consultas HTTP a los Endpoints de SpotyFruna mediante un menu, con expectativas de crear un .exe a partir de este.
+### FEATURES
+- Se agregó un script de Python para realizar solicitudes HTTP, aun en desarrollo.
+
 ## [v0.1.2] 28-04-2026: Changelog
 Iniciación de documentación del proyecto.
 ### FEATURES

@@ -3,6 +3,22 @@
 Todos los cambios notables de este proyecto estarán documentados en este archivo.
 
 ---
+## [v0.1.6] 29-04-2026: Nuevas pantallas y funciones principales.
+Desarrollo del script/programa para las consultas HTTP, logrando un menú escalable con validación de ingreso de datos, sentando bases para realizar conexiones a la base de datos Oracle mediante las solicitudes a los Endpoints.
+
+### ADDED
+- Se añadió una pantalla para el menú Endpoints.
+- Se añadió una pantalla para el menú CRUD Estándar.
+- Se añadió una pantalla para el menú CRUD_GET.
+- Se añadió una pantalla para el menú CRUD_GET_FindAll.
+- Se añadió una pantalla para el menú CRUD_GET_FindOne.
+- Se añadio una función para obtener el título de la API en plural.
+- Se añadio una función para obtener el título de la API en singular.
+
+### CHANGED
+- Se refactorizó la lógica de las pausas de los menús.
+- Se refactorizó la lógica del menú CRUD_GET.
+
 ## [v0.1.5] 29-04-2026: Actualización de la API "usuarios-service"
 Desarrollo de la API "usuarios-service", bases solidas de Controller-Service-Repository-Model con su respectivo CRUD.
 

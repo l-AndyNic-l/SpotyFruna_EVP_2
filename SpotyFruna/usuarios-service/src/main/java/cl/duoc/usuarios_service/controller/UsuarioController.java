@@ -1,5 +1,6 @@
 package cl.duoc.usuarios_service.controller;
 
+import cl.duoc.usuarios_service.dto.UsuarioDTO;
 import cl.duoc.usuarios_service.model.Usuario;
 import cl.duoc.usuarios_service.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +15,12 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @GetMapping
-    public List<Usuario> findAll() {
+    public List<UsuarioDTO> findAll() {
         return usuarioService.findAll();
     }
 
     @GetMapping( "/{id}" )
-    public Usuario findById( @PathVariable  Long id ) {
+    public UsuarioDTO findById( @PathVariable  Long id ) {
         return usuarioService.findById(id);
     }
 

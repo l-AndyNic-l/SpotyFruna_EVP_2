@@ -30,17 +30,15 @@ def load_main_menu(APIs: list):
                 break
         else:
             print("\nOpción ingresada inválida.")
-
-        #PAUSE
-        print("\n...Presione un boton para continuar...")
-        msvcrt.getch()
+            #PAUSE
+            print("\n...Presione un boton para continuar...")
+            msvcrt.getch()
 
 def load_select_endpoints_menu(API: str):
     while True:
         #SCREEN
         os.system('cls')
-        request_status(API)
-        print()
+        print(screen_endpoints_menu(api_url_title_plural(API)))
         option = input("Seleccione una opción (0-2): ")
         os.system('cls')
         #OPTIONS
@@ -57,21 +55,21 @@ def load_select_endpoints_menu(API: str):
         else:
             print("\nOpción ingresada inválida.")
             #PAUSE
-        print("\n...Presione un boton para continuar...")
-        msvcrt.getch()
+            print("\n...Presione un boton para continuar...")
+            msvcrt.getch()
 
 def load_crud_menu(API: str):
     #CRUD_MENU
     while True:
         #SCREEN
         os.system('cls')
-        print(screen_crud_menu())
+        print(screen_crud_menu(api_url_title_plural(API)))
         option = input("Seleccione una opción (0-4): ")
         os.system('cls')
         #OPTIONS
         #HTTP GET
         if option == '1':
-            pass
+            load_crud_get_menu(API)
         #HTTP POST
         elif option == '2':
             pass
@@ -87,6 +85,28 @@ def load_crud_menu(API: str):
         #VALIDATION
         else:
             print("\nOpción ingresada inválida.")
-        #PAUSE
-        print("\n...Presione un boton para continuar...")
-        msvcrt.getch()
+            #PAUSE
+            print("\n...Presione un boton para continuar...")
+            msvcrt.getch()
+
+def load_crud_get_menu(API: str) -> str:
+    while True:
+        #SCREEN
+        os.system('cls')
+        print(screen_crud_get_menu(api_url_title_plural(API)))
+        option = input("Seleccione una opción (0-2): ")
+        os.system('cls')
+        #GET FINDALL
+        if option == '1':
+            crud_get_findAll(API)
+        #GET FINDONE
+        elif option == '2':
+            crud_get_findOne(API)
+        elif option == '0':
+            break
+        #VALIDATION
+        else:
+            print("\nOpción ingresada inválida.")
+            #PAUSE
+            print("\n...Presione un boton para continuar...")
+            msvcrt.getch()

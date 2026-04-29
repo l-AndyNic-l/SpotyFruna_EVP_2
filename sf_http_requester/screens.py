@@ -16,12 +16,40 @@ def screen_main_menu() -> str:
 0.  Terminar programa.
 """
 
-def screen_crud_menu() -> str:
-    return """
-=== HTTP CRUD Requests ===
+def screen_endpoints_menu(API: str) -> str:
+    return f"""
+=== {API} Endpoints Menu ===
+
+1. Funciones principales de la API.
+2. CRUD Estandár.
+0. Volver al menú principal.
+"""
+
+def screen_crud_menu(API: str) -> str:
+    return f"""
+=== {API} CRUD Requests ===
+
 1. Get.
 2. Put.
 3. Post.
 4. Delete.
 0. Volver al menu principal.
+"""
+
+def screen_crud_get_menu(API: str) -> str:
+    return f"""
+=== {API} GET Requests ===
+
+1. Listar todos.
+2. Buscar uno.
+"""
+
+def screen_crud_get_findAll_menu(API: str) -> str:
+    return f"""
+=== Listando {API} ===
+"""
+
+def screen_crud_get_findOne_menu(API: str) -> str:
+    return f"""
+=== Buscando {API[:1]} ===
 """

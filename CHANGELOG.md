@@ -3,6 +3,20 @@
 Todos los cambios notables de este proyecto estarán documentados en este archivo.
 
 ---
+## [v0.1.5] 29-04-2026: Actualización de la API "usuarios-service"
+Desarrollo de la API "usuarios-service", bases solidas de Controller-Service-Repository-Model con su respectivo CRUD.
+
+### ADDED
+- Se añadió y definió la clase "Usuario.java" en el modelo de la API "usuarios-service".
+- Se añadió y estableció el repositorio "UsuarioRepository.java".
+- Se añadió y estableció el service "UsuarioService.java" con reglas de negocio estándar.
+- Se agregó el .idea al archivo ".gitignore".
+
+### CHANGED
+- Se cambió la dependencia de la base de datos del proyecto a Oracle.
+- Se refactorizó el CRUD de la API "usuarios-service" en el archivo "UsuarioController.java"
+- 
+
 ## [v0.1.4] 28-04-2026: Python HTTP Requester pulido y listo para testear APIs
 Desarrollo del script/programa para las consultas HTTP, logrando establecer unas base solida para testear la conexión a los Endpoints de SpotyFruna. 
 

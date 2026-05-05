@@ -36,19 +36,21 @@ public class UsuarioService {
     }
 
     public Usuario save(Usuario u) {
-        if(u.getTipo().equalsIgnoreCase("Cliente") || u.getTipo().equalsIgnoreCase("Artista")) {
-            return usuarioRepository.save(u);
-        } else {
-            return null;
-        }
+        //if(u.getTipo().equalsIgnoreCase("Cliente") || u.getTipo().equalsIgnoreCase("Artista")) {
+        //    return usuarioRepository.save(u);
+        //} else {
+        //    return null;
+        //}
+        return usuarioRepository.save(u);
     }
 
     public int update(Usuario u, Long id) {
-        if(u.getTipo().equalsIgnoreCase("Cliente") || u.getTipo().equalsIgnoreCase("Artista")) {
-            return usuarioRepository.update(u, id);
-        } else {
-            return 0;
-        }
+        //if(u.getTipo().equalsIgnoreCase("Cliente") || u.getTipo().equalsIgnoreCase("Artista")) {
+        //    return usuarioRepository.update(u, id);
+        //} else {
+        //    return 0;
+        //}
+        return usuarioRepository.update(u, id);
     }
 
     public Boolean deleteById(Long id) {

@@ -40,10 +40,8 @@ public class Usuario {
     @Column(nullable = false)
     private LocalDate fechaNacimiento;
 
-    @Column(nullable = false)
-    private String tipo;
-
-    @Column(nullable = false)
-    private boolean administrador = false;
+    @ManyToOne
+    @JoinColumn( name = "id_tipo", nullable = false)
+    private TipoUsuario tipoUsuario;
 
 }

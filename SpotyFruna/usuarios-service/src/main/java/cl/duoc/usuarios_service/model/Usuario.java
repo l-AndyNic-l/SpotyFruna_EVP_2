@@ -1,6 +1,5 @@
 package cl.duoc.usuarios_service.model;
 
-import cl.duoc.usuarios_service.model.TipoUsuario;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;

@@ -1,29 +1,43 @@
 package cl.duoc.canciones_service.controller;
 
+import cl.duoc.canciones_service.dto.CancionDTO;
+import cl.duoc.canciones_service.model.Cancion;
+import cl.duoc.canciones_service.service.CancionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping( "/api/v1/canciones" )
 public class CancionController {
 
+    @Autowired
+    private CancionService cancionService;
+
     @GetMapping
-    public String getCancion () {
-        return "Get + Cancion";
+    public List<CancionDTO> findAll() {
+        return cancionService.findAll();
+    }
+
+    @GetMapping( "/{id}" )
+    public CancionDTO findById(@PathVariable Long id) {
+        return cancionService.findById(id);
     }
 
     @PostMapping
-    public String postCancion () {
-        return "Post + Cancion";
+    public Cancion save(@RequestBody Cancion c) {
+        return cancionService.save(c);
     }
 
     @PutMapping( "/{id}" )
-    public String putCancion ( @PathVariable Long id ) {
-        return "Put + Cancion + " + id;
+    public int update(@PathVariable Long id, @RequestBody Cancion c) {
+        return cancionService.update(c, id);
     }
 
-    @DeleteMapping( "/{id}" )
-    public String deleteCancion ( @PathVariable Long id ) {
-        return "Delete + Cancion + " + id;
+    @DeleteMapping("/{id}")
+    public Boolean delete(@PathVariable Long id) {
+        return cancionService.deleteById(id);
     }
 
 }

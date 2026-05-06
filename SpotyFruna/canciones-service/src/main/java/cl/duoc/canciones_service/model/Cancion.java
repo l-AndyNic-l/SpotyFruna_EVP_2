@@ -20,6 +20,10 @@ public class Cancion {
 
     @Size(min = 1, max = 50)
     @Column(nullable = false, unique = true)
+    private String autor;
+
+    @Size(min = 1, max = 50)
+    @Column(nullable = false, unique = true)
     private String titulo;
 
     @Column(nullable = false)

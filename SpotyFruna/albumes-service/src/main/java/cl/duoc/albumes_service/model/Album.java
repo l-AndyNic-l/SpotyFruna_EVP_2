@@ -31,5 +31,5 @@ public class Album {
 
     @ManyToOne
     @JoinColumn(name = "id_tipo_album", nullable = false)
-    private TipoAlbum tipoAlbum;
+    private TipoAlbum tipo_album;
 }

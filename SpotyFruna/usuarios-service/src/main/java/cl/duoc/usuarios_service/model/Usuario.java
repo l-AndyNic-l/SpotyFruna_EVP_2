@@ -1,13 +1,12 @@
 package cl.duoc.usuarios_service.model;
 
+import cl.duoc.usuarios_service.model.TipoUsuario;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
@@ -17,15 +16,11 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id_usuario;
 
     @Size(min = 3, max = 50)
     @Column(nullable = false)
-    private String nombre;
-
-    @Size(min = 3, max = 50)
-    @Column(nullable = false)
-    private String apellido;
+    private String nombre_usuario;
 
     @Email
     @Column(unique = true, nullable = false)
@@ -35,13 +30,27 @@ public class Usuario {
     @Column(nullable = false)
     private String password;
 
-    private int celular;
-
     @Column(nullable = false)
-    private LocalDate fechaNacimiento;
+    private Boolean activo;
+
+    @Size(min = 3, max = 50)
+    @Column()
+    private String pnombre;
+
+    @Size(min = 3, max = 50)
+    @Column()
+    private String snombre;
+
+    @Size(min = 3, max = 50)
+    @Column(nullable = false)
+    private String appaterno;
+
+    @Size(min = 3, max = 50)
+    @Column()
+    private String apmaterno;
 
     @ManyToOne
-    @JoinColumn( name = "id_tipo", nullable = false)
+    @JoinColumn(name = "id_tipo_usr", nullable = false)
     private TipoUsuario tipoUsuario;
 
 }

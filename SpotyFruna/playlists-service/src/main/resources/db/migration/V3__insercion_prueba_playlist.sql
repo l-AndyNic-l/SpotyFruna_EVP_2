@@ -1,0 +1,22 @@
+-- Insertar 20 playlists con privacidad (1 = Pública, 2 = Privada) y usuarios del 1 al 20
+INSERT INTO PLAYLIST (nombre, descripcion, fecha_creacion, id_privacidad, id_usuario) VALUES
+                                                                                          ('Rock Clásico', 'Los mejores temas de rock de los 70s y 80s', '2024-01-15', 1, 1),
+                                                                                          ('Pop Actual', 'Éxitos del pop moderno', '2024-01-16', 2, 2),
+                                                                                          ('Jazz Relajante', 'Música para desconectar', '2024-01-17', 1, 3),
+                                                                                          ('Metal Extremo', 'Los mejores riffs de metal', '2024-01-18', 2, 4),
+                                                                                          ('Electrónica', 'Mix de música electrónica', '2024-01-19', 1, 5),
+                                                                                          ('Reggae Vibes', 'Música para relajarse', '2024-01-20', 2, 6),
+                                                                                          ('Blues Nostálgico', 'Blues clásico y moderno', '2024-01-21', 1, 7),
+                                                                                          ('Country', 'Lo mejor del country', '2024-01-22', 2, 8),
+                                                                                          ('Funk', 'Música para bailar', '2024-01-23', 1, 9),
+                                                                                          ('Para Entrenar', 'Energía para tu rutina', '2024-01-24', 2, 10),
+                                                                                          ('Música Clásica', 'Obras maestras de la música clásica', '2024-01-25', 1, 11),
+                                                                                          ('Indie', 'Descubre nuevos artistas', '2024-01-26', 2, 12),
+                                                                                          ('Romántica', 'Canciones para enamorar', '2024-01-27', 1, 13),
+                                                                                          ('Para Estudiar', 'Música para concentrarse', '2024-01-28', 2, 14),
+                                                                                          ('Fiestas', 'Música para celebrar', '2024-01-29', 1, 15),
+                                                                                          ('Nostálgica', 'Éxitos de los 80s y 90s', '2024-01-30', 2, 16),
+                                                                                          ('Viajes', 'Música para carretera', '2024-01-31', 1, 17),
+                                                                                          ('Gaming', 'Soundtrack para videojuegos', '2024-02-01', 2, 18),
+                                                                                          ('Acústica', 'Versiones acústicas', '2024-02-02', 1, 19),
+                                                                                          ('Latina', 'Lo mejor de la música latina', '2024-02-03', 2, 20);

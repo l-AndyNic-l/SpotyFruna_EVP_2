@@ -11,16 +11,16 @@ public interface AuthRepository extends JpaRepository<Auth, Long> {
 
     List<Auth> findAllByUsuario(Long id);
 
-    @Query(value = "select * from auth where to_char(fecha_registro, 'yyyy') = :anio", nativeQuery = true)
+    @Query(value = "select * from auth where year(fecha_registro) = :anio", nativeQuery = true)
     List<Auth> findAllByAnio(int anio);
 
-    @Query(value = "select * from auth where to_char(fecha_registro, 'mm') = :mes and to_char(fecha_registro, 'yyyy') = :anio", nativeQuery = true)
+    @Query(value = "select * from auth where month(fecha_registro) = :mes and year(fecha_registro) = :anio", nativeQuery = true)
     List<Auth> findAllByMes(int mes, int anio);
 
-    @Query(value = "select * from auth where to_char(fecha_registro, 'dd') = :dia and to_char(fecha_registro, 'mm') = :mes and to_char(fecha_registro, 'yyyy') = :anio", nativeQuery = true)
+    @Query(value = "select * from auth where day(fecha_registro) = :dia and month(fecha_registro) = :mes and year(fecha_registro) = :anio", nativeQuery = true)
     List<Auth> findAllByDia(int dia, int mes, int anio);
 
-    @Query(value = "select * from auth where fecha_registro >= to_date(:fecha_ini, 'yyyy-mm-dd') and fecha_registro < to_date(:fecha_ter, 'yyyy-mm-dd')", nativeQuery = true)
+    @Query(value = "select * from auth where fecha_registro >= :fecha_ini and fecha_registro < :fecha_ter", nativeQuery = true)
     List<Auth> findAllByEntreFechas(String fecha_ini, String fecha_ter);
 
 }

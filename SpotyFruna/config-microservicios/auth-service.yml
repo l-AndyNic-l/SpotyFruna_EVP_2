@@ -1,0 +1,24 @@
+server:
+  port: 0
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+    path: /doc/swagger-ui.html
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/registros_service
+    username: root
+    password: ""
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect

@@ -1,0 +1,108 @@
+server:
+    port: 8080
+
+eureka:
+    client:
+        service-url:
+            defaultZone: http://localhost:8761/eureka/
+        register-with-eureka: true
+        fetch-registry: true
+    instance:
+        prefer-ip-address: true
+
+spring:
+    cloud:
+        gateway:
+            server:
+                webflux:
+                    routes:
+
+                        - id: usuarios-service
+                          uri: lb://usuarios-service
+                          predicates:
+                              - Path=/api/v1/usuarios/**
+
+                        - id: tipos-usuarios-service
+                          uri: lb://usuarios-service
+                          predicates:
+                              - Path=/api/v1/tipos_usuarios/**
+
+                        - id: auth-service
+                          uri: lb://auth-service
+                          predicates:
+                              - Path=/api/v1/registros/**
+
+                        - id: estados-auth-service
+                          uri: lb://auth-service
+                          predicates:
+                              - Path=/api/v1/estados_registros/**
+
+                        - id: albumes-service
+                          uri: lb://albumes-service
+                          predicates:
+                              - Path=/api/v1/albumes/**
+
+                        - id: tipos-albumes-service
+                          uri: lb://albumes-service
+                          predicates:
+                              - Path=/api/v1/tipos_albumes/**
+
+                        - id: canciones-service
+                          uri: lb://canciones-service
+                          predicates:
+                              - Path=/api/v1/canciones/**
+
+                        - id: generos-canciones-service
+                          uri: lb://canciones-service
+                          predicates:
+                              - Path=/api/v1/generos_canciones/**
+
+                        - id: reportes-service
+                          uri: lb://reportes-service
+                          predicates:
+                              - Path=/api/v1/reportes/**
+
+                        - id: estados-reportes-service
+                          uri: lb://reportes-service
+                          predicates:
+                              - Path=/api/v1/estados_reportes/**
+
+                        - id: tipos-reportes-service
+                          uri: lb://reportes-service
+                          predicates:
+                              - Path=/api/v1/tipos_reportes/**
+
+                        - id: suscripciones-service
+                          uri: lb://suscripciones-service
+                          predicates:
+                              - Path=/api/v1/suscripciones/**
+
+                        - id: plan-suscripciones-service
+                          uri: lb://suscripciones-service
+                          predicates:
+                              - Path=/api/v1/planes/**
+
+                        - id: reproducciones-service
+                          uri: lb://reproducciones-service
+                          predicates:
+                              - Path=/api/v1/reproducciones/**
+
+                        - id: dispositivos-reproducciones-service
+                          uri: lb://reproducciones-service
+                          predicates:
+                              - Path=/api/v1/dispositivos_reproducciones/**
+
+                        - id: playlists-service
+                          uri: lb://playlists-service
+                          predicates:
+                              - Path=/api/v1/playlists/**
+
+                        - id: guardar-canciones-playlists-service
+                          uri: lb://playlists-service
+                          predicates:
+                              - Path=/api/v1/guardar_canciones_playlists/**
+
+                        - id: privacidades-playlists-service
+                          uri: lb://playlists-service
+                          predicates:
+                              - Path=/api/v1/privacidades_playlists/**

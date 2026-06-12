@@ -1,0 +1,8 @@
+CREATE DATABASE IF NOT EXISTS usuarios_service;
+CREATE DATABASE IF NOT EXISTS suscripciones_service;
+CREATE DATABASE IF NOT EXISTS reproducciones_service;
+CREATE DATABASE IF NOT EXISTS reportes_service;
+CREATE DATABASE IF NOT EXISTS playlists_service;
+CREATE DATABASE IF NOT EXISTS canciones_service;
+CREATE DATABASE IF NOT EXISTS registros_service;
+CREATE DATABASE IF NOT EXISTS albumes_service;

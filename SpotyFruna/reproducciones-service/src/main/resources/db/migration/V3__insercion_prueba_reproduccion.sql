@@ -1,5 +1,5 @@
 -- Insertar 30 reproducciones con dispositivos, canciones (1-10) y usuarios (1-20)
-INSERT INTO REPRODUCCION (fecha_reproduccion, segundos_escuchados, id_dispositivo, cancion, usuario) VALUES
+INSERT INTO reproduccion (fecha_reproduccion, segundos_escuchados, id_dispositivo, cancion, usuario) VALUES
 -- Reproducciones del día 2024-01-15
 ('2024-01-15', 180, 1, 1, 1),
 ('2024-01-15', 245, 2, 2, 2),

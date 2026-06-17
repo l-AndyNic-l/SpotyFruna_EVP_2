@@ -18,5 +18,5 @@ CREATE TABLE auth (
 
                       CONSTRAINT fk_auth_estado
                           FOREIGN KEY (id_estado)
-                              REFERENCES ESTADO(id)
+                              REFERENCES estado(id)
 );

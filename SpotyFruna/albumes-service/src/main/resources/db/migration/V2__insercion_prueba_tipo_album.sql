@@ -1,5 +1,5 @@
 -- Insertar los 3 tipos de álbumes
-INSERT INTO TIPO_ALBUM (nombre) VALUES
+INSERT INTO tipo_album (nombre) VALUES
                                     ('Álbum'),
                                     ('Álbum Doble'),
                                     ('Sencillo');

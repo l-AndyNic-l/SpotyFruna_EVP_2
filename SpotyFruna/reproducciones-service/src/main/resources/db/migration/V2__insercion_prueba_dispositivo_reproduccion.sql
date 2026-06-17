@@ -1,5 +1,5 @@
 -- Insertar 4 dispositivos
-INSERT INTO DISPOSITIVO (nombre) VALUES
+INSERT INTO dispositivo (nombre) VALUES
                                      ('Móvil'),
                                      ('Tablet'),
                                      ('PC'),

@@ -10,7 +10,7 @@ CREATE TABLE album (
                        artista BIGINT NOT NULL,
                        nombre VARCHAR(50) NOT NULL,
                        descripcion VARCHAR(300),
-                       fecha_lanzamiento DATE DEFAULT CURRENT_DATE NOT NULL,
+                       fecha_lanzamiento DATE NOT NULL DEFAULT (CURDATE()),
                        id_tipo_album BIGINT NOT NULL,
 
                        CONSTRAINT ck_album_nombre CHECK (CHAR_LENGTH(nombre) BETWEEN 1 AND 50),
@@ -20,5 +20,5 @@ CREATE TABLE album (
                            ),
                        CONSTRAINT fk_album_tipo_album
                            FOREIGN KEY (id_tipo_album)
-                               REFERENCES TIPO_ALBUM(id)
+                               REFERENCES tipo_album(id)
 );

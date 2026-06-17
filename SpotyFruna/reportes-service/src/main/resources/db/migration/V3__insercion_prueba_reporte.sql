@@ -1,5 +1,5 @@
 -- Insertar 20 reportes con usuarios del 1 al 20
-INSERT INTO REPORTE (administrador, usuario, descripcion, fecha_enviado, fecha_resuelto, id_tipo_reporte, id_estado) VALUES
+INSERT INTO reporte (administrador, usuario, descripcion, fecha_enviado, fecha_resuelto, id_tipo_reporte, id_estado) VALUES
 -- Reportes de Error (id_tipo_reporte = 1)
 (1, 1, 'Error al intentar reproducir canciones en modo offline', '2024-01-10', '2024-01-12', 1, 3),
 (2, 2, 'La aplicación se cierra inesperadamente al abrirla', '2024-01-15', NULL, 1, 2),

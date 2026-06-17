@@ -17,5 +17,5 @@ CREATE TABLE suscripcion (
                              id_plan BIGINT NOT NULL,
                              id_usuario BIGINT NOT NULL,
 
-                             CONSTRAINT fk_suscripcion_plan FOREIGN KEY (id_plan) REFERENCES PLAN(id)
+                             CONSTRAINT fk_suscripcion_plan FOREIGN KEY (id_plan) REFERENCES plan(id)
 );

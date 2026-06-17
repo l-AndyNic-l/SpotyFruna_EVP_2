@@ -1,5 +1,5 @@
 -- Insertar 10 suscripciones para usuarios del 1 al 10
-INSERT INTO SUSCRIPCION (fecha_inicio, fecha_termino, activado, id_plan, id_usuario) VALUES
+INSERT INTO suscripcion (fecha_inicio, fecha_termino, activado, id_plan, id_usuario) VALUES
                                                                                          ('2024-01-01', '2025-01-01', TRUE, 3, 1),   -- Usuario 1: Premium (anual)
                                                                                          ('2024-01-15', '2024-07-15', TRUE, 2, 2),   -- Usuario 2: Básico (6 meses)
                                                                                          ('2024-02-01', '2025-02-01', TRUE, 4, 3),   -- Usuario 3: Familiar (anual)

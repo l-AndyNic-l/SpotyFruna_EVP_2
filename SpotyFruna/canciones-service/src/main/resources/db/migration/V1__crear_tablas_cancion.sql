@@ -19,5 +19,5 @@ CREATE TABLE cancion (
                          CONSTRAINT uk_cancion_titulo UNIQUE (titulo),
                          CONSTRAINT ck_cancion_autor CHECK (CHAR_LENGTH(autor) BETWEEN 1 AND 50),
                          CONSTRAINT ck_cancion_titulo CHECK (CHAR_LENGTH(titulo) BETWEEN 1 AND 50),
-                         CONSTRAINT fk_cancion_genero FOREIGN KEY (id_genero) REFERENCES GENERO(id)
+                         CONSTRAINT fk_cancion_genero FOREIGN KEY (id_genero) REFERENCES genero(id)
 );

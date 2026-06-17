@@ -1,5 +1,5 @@
 -- Insertar 20 playlists con privacidad (1 = Pública, 2 = Privada) y usuarios del 1 al 20
-INSERT INTO PLAYLIST (nombre, descripcion, fecha_creacion, id_privacidad, id_usuario) VALUES
+INSERT INTO playlist (nombre, descripcion, fecha_creacion, id_privacidad, id_usuario) VALUES
                                                                                           ('Rock Clásico', 'Los mejores temas de rock de los 70s y 80s', '2024-01-15', 1, 1),
                                                                                           ('Pop Actual', 'Éxitos del pop moderno', '2024-01-16', 2, 2),
                                                                                           ('Jazz Relajante', 'Música para desconectar', '2024-01-17', 1, 3),

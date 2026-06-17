@@ -1,5 +1,5 @@
 -- Insertar 40 canciones guardadas en playlists (canciones ID 1-10 distribuidas en playlists ID 1-20)
-INSERT INTO GUARDAR_CANCION (id_playlist, id_cancion) VALUES
+INSERT INTO guardar_cancion (id_playlist, id_cancion) VALUES
                                                           -- Playlist 1 (Rock Clásico) - 2 canciones
                                                           (1, 1), (1, 6),
 

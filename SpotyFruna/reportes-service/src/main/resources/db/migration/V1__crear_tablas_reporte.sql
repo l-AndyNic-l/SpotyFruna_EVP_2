@@ -19,12 +19,12 @@ CREATE TABLE reporte (
                          administrador BIGINT NOT NULL,
                          usuario BIGINT NOT NULL,
                          descripcion VARCHAR(255) NOT NULL,
-                         fecha_enviado DATE DEFAULT CURRENT_DATE NOT NULL,
-                         fecha_resuelto DATE NULL,
+                         fecha_enviado DATE NOT NULL DEFAULT (CURDATE()),
+                         fecha_resuelto DATE,
                          id_tipo_reporte BIGINT NOT NULL,
                          id_estado BIGINT NOT NULL,
 
                          CONSTRAINT ck_reporte_descripcion CHECK (CHAR_LENGTH(descripcion) >= 10),
-                         CONSTRAINT fk_reporte_tipo_reporte FOREIGN KEY (id_tipo_reporte) REFERENCES TIPO_REPORTE(id),
-                         CONSTRAINT fk_reporte_estado FOREIGN KEY (id_estado) REFERENCES ESTADO(id)
+                         CONSTRAINT fk_reporte_tipo_reporte FOREIGN KEY (id_tipo_reporte) REFERENCES tipo_reporte(id),
+                         CONSTRAINT fk_reporte_estado FOREIGN KEY (id_estado) REFERENCES estado(id)
 );

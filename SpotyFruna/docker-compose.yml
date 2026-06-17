@@ -10,11 +10,11 @@ services:
       - "3307:3306"
     volumes:
       - ./init-db:/docker-entrypoint-initdb.d
-      - mysql_data:var/lib/mysql
+      - mysql_data:/var/lib/mysql
 ################################################################################
   eureka:
     build:
-      context: ./eureka
+      context: ./eureka-service
       dockerfile: Dockerfile
     container_name: eureka
     ports:

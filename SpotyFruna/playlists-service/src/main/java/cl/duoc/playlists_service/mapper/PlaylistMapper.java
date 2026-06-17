@@ -24,7 +24,7 @@ public class PlaylistMapper {
         dto.setDescripcion(p.getDescripcion());
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        dto.setFecha_creacion(p.getFechaCreacion().format(dtf));
+        dto.setFechaCreacion(p.getFechaCreacion().format(dtf));
 
         dto.setPrivacidad(p.getPrivacidad().getNombre());
         dto.setUsuario(u.getEmail());

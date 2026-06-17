@@ -26,7 +26,7 @@ public class PlanMapper {
             dto.setAnuncios("Sin Anuncios");
         }
 
-        dto.setTamanio_descargas(p.getTamanioDescargas() + " MB");
+        dto.setTamanioDescargas(p.getTamanioDescargas() + " MB");
 
         return dto;
 

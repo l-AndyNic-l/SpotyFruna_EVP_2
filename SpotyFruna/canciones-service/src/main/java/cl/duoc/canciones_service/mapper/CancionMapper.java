@@ -32,7 +32,7 @@ public class CancionMapper {
         }
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        dto.setFecha_lanzamiento(c.getFechaLanzamiento().format(dtf));
+        dto.setFechaLanzamiento(c.getFechaLanzamiento().format(dtf));
         dto.setGenero(c.getGenero().getNombre());
         dto.setAlbum(a.getNombre());
 

@@ -11,6 +11,6 @@ public class PlanDTO {
     private String nombre;
     private String precio;
     private String anuncios;
-    private String tamanio_descargas;
+    private String tamanioDescargas;
 
 }

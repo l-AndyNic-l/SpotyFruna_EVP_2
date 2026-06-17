@@ -23,13 +23,13 @@ public class ReproduccionMapper {
         int segundos = r.getSegundosEscuchados() % 60;
 
         dto.setId( r.getId() );
-        dto.setFecha_reproduccion(r.getFechaReproduccion().format(dtf));
+        dto.setFechaReproduccion(r.getFechaReproduccion().format(dtf));
 
         if ( segundos < 10 ) {
-            dto.setTiempo_escuchado( minutos + ":0" + segundos );
+            dto.setTiempoEscuchado( minutos + ":0" + segundos );
 
         } else {
-            dto.setTiempo_escuchado( minutos + ":" + segundos );
+            dto.setTiempoEscuchado( minutos + ":" + segundos );
         }
 
         if ( r.getDispositivo() != null ) {

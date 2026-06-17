@@ -6,12 +6,12 @@ import lombok.Data;
 import java.time.LocalDate;
 
 @Data
-@JsonPropertyOrder({"id", "fecha_inicio", "fecha_termino", "activado", "plan", "usuario"})
+@JsonPropertyOrder({"id", "fechaInicio", "fechaTermino", "activado", "plan", "usuario"})
 public class SuscripcionDTO {
 
     private Long id;
-    private String fecha_inicio;
-    private String fecha_termino;
+    private String fechaInicio;
+    private String fechaTermino;
     private String activado;
     private String plan;
     private String usuario;

@@ -21,8 +21,8 @@ public class SuscripcionMapper {
         dto.setId(s.getId());
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        dto.setFecha_inicio(s.getFechaInicio().format(dtf));
-        dto.setFecha_termino(s.getFechaTermino().format(dtf));
+        dto.setFechaInicio(s.getFechaInicio().format(dtf));
+        dto.setFechaTermino(s.getFechaTermino().format(dtf));
 
         if( s.getActivado() ) {
             dto.setActivado("Si");

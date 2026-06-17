@@ -6,15 +6,15 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-@JsonPropertyOrder({"id", "artista", "nombre", "descripcion", "fecha_lanzamiento", "tipo_album"})
+@JsonPropertyOrder({"id", "artista", "nombre", "descripcion", "fechaLanzamiento", "tipoAlbum"})
 public class AlbumDTO {
 
     private Long id;
     private String artista;
     private String nombre;
     private String descripcion;
-    private String fecha_lanzamiento;
-    private String tipo_album;
+    private String fechaLanzamiento;
+    private String tipoAlbum;
     private List<AlbumCancionDTO> canciones;
 
 }

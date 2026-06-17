@@ -24,8 +24,8 @@ public class AlbumMapper {
         dto.setDescripcion(a.getDescripcion());
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        dto.setFecha_lanzamiento(a.getFechaLanzamiento().format(dtf));
-        dto.setTipo_album(a.getTipoAlbum().getNombre());
+        dto.setFechaLanzamiento(a.getFechaLanzamiento().format(dtf));
+        dto.setTipoAlbum(a.getTipoAlbum().getNombre());
         dto.setCanciones(c);
 
         return dto;

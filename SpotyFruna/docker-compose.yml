@@ -29,6 +29,7 @@ services:
       - "8888:8888"
     environment:
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:8761/eureka/
+      CONFIG_SEARCH_LOCATIONS: file:/config-microservicios
     volumes:
       - ./config-microservicios:/config-microservicios
 ################################################################################

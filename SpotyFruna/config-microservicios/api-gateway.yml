@@ -20,89 +20,183 @@ spring:
                         - id: usuarios-service
                           uri: lb://usuarios-service
                           predicates:
-                              - Path=/api/v1/usuarios/**
+                            - Path=/api/v1/usuarios/**, /v3/api-docs/usuarios
+                          filters:
+                            - RewritePath=/v3/api-docs/usuarios, /v3/api-docs
 
                         - id: tipos-usuarios-service
                           uri: lb://usuarios-service
                           predicates:
-                              - Path=/api/v1/tipos_usuarios/**
+                              - Path=/api/v1/tipos_usuarios/**, /v3/api-docs/tipos_usuarios
+                          filters:
+                            - RewritePath=/v3/api-docs/tipos_usuarios, /v3/api-docs
 
                         - id: auth-service
                           uri: lb://auth-service
                           predicates:
-                              - Path=/api/v1/registros/**
+                              - Path=/api/v1/registros/**, /v3/api-docs/registros
+                          filters:
+                            - RewritePath=/v3/api-docs/registros, /v3/api-docs
 
                         - id: estados-auth-service
                           uri: lb://auth-service
                           predicates:
-                              - Path=/api/v1/estados_registros/**
+                              - Path=/api/v1/estados_registros/**, /v3/api-docs/estados_registros
+                          filters:
+                            - RewritePath=/v3/api-docs/estados_registros, /v3/api-docs
 
                         - id: albumes-service
                           uri: lb://albumes-service
                           predicates:
-                              - Path=/api/v1/albumes/**
+                              - Path=/api/v1/albumes/**, /v3/api-docs/albumes
+                          filters:
+                            - RewritePath=/v3/api-docs/albumes, /v3/api-docs
 
                         - id: tipos-albumes-service
                           uri: lb://albumes-service
                           predicates:
-                              - Path=/api/v1/tipos_albumes/**
+                              - Path=/api/v1/tipos_albumes/**, /v3/api-docs/tipos_albumes
+                          filters:
+                            - RewritePath=/v3/api-docs/tipos_albumes, /v3/api-docs
 
                         - id: canciones-service
                           uri: lb://canciones-service
                           predicates:
-                              - Path=/api/v1/canciones/**
+                              - Path=/api/v1/canciones/**, /v3/api-docs/canciones
+                          filters:
+                            - RewritePath=/v3/api-docs/canciones, /v3/api-docs
 
                         - id: generos-canciones-service
                           uri: lb://canciones-service
                           predicates:
-                              - Path=/api/v1/generos_canciones/**
+                              - Path=/api/v1/generos_canciones/**, /v3/api-docs/generos_canciones
+                          filters:
+                            - RewritePath=/v3/api-docs/generos_canciones, /v3/api-docs
 
                         - id: reportes-service
                           uri: lb://reportes-service
                           predicates:
-                              - Path=/api/v1/reportes/**
+                              - Path=/api/v1/reportes/**, /v3/api-docs/reportes
+                          filters:
+                            - RewritePath=/v3/api-docs/reportes, /v3/api-docs
 
                         - id: estados-reportes-service
                           uri: lb://reportes-service
                           predicates:
-                              - Path=/api/v1/estados_reportes/**
+                              - Path=/api/v1/estados_reportes/**, /v3/api-docs/estados_reportes
+                          filters:
+                            - RewritePath=/v3/api-docs/estados_reportes, /v3/api-docs
 
                         - id: tipos-reportes-service
                           uri: lb://reportes-service
                           predicates:
-                              - Path=/api/v1/tipos_reportes/**
+                              - Path=/api/v1/tipos_reportes/**, /v3/api-docs/tipos_reportes
+                          filters:
+                            - RewritePath=/v3/api-docs/tipos_reportes, /v3/api-docs
 
                         - id: suscripciones-service
                           uri: lb://suscripciones-service
                           predicates:
-                              - Path=/api/v1/suscripciones/**
+                              - Path=/api/v1/suscripciones/**, /v3/api-docs/suscripciones
+                          filters:
+                            - RewritePath=/v3/api-docs/suscripciones, /v3/api-docs
 
                         - id: plan-suscripciones-service
                           uri: lb://suscripciones-service
                           predicates:
-                              - Path=/api/v1/planes/**
+                              - Path=/api/v1/planes/**, /v3/api-docs/planes
+                          filters:
+                            - RewritePath=/v3/api-docs/planes, /v3/api-docs
 
                         - id: reproducciones-service
                           uri: lb://reproducciones-service
                           predicates:
-                              - Path=/api/v1/reproducciones/**
+                              - Path=/api/v1/reproducciones/**, /v3/api-docs/reproducciones
+                          filters:
+                            - RewritePath=/v3/api-docs/reproducciones, /v3/api-docs
 
                         - id: dispositivos-reproducciones-service
                           uri: lb://reproducciones-service
                           predicates:
-                              - Path=/api/v1/dispositivos_reproducciones/**
+                              - Path=/api/v1/dispositivos_reproducciones/**, /v3/api-docs/dispositivos_reproducciones
+                          filters:
+                            - RewritePath=/v3/api-docs/dispositivos_reproducciones, /v3/api-docs
 
                         - id: playlists-service
                           uri: lb://playlists-service
                           predicates:
-                              - Path=/api/v1/playlists/**
+                              - Path=/api/v1/playlists/**, /v3/api-docs/playlists
+                          filters:
+                            - RewritePath=/v3/api-docs/playlists, /v3/api-docs
 
                         - id: guardar-canciones-playlists-service
                           uri: lb://playlists-service
                           predicates:
-                              - Path=/api/v1/guardar_canciones_playlists/**
+                              - Path=/api/v1/guardar_canciones_playlists/**, /v3/api-docs/guardar_canciones_playlists
+                          filters:
+                            - RewritePath=/v3/api-docs/guardar_canciones_playlists, /v3/api-docs
 
                         - id: privacidades-playlists-service
                           uri: lb://playlists-service
                           predicates:
-                              - Path=/api/v1/privacidades_playlists/**
+                              - Path=/api/v1/privacidades_playlists/**, /v3/api-docs/privacidades_playlists
+                          filters:
+                            - RewritePath=/v3/api-docs/privacidades_playlists, /v3/api-docs
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    urls:
+      - name: Usuarios
+        url: /v3/api-docs/usuarios
+
+      - name: Tipos Usuarios
+        url: /v3/api-docs/tipos_usuarios
+
+      - name: Registros
+        url: /v3/api-docs/registros
+
+      - name: Estados Registros
+        url: /v3/api-docs/estados_registros
+
+      - name: Albumes
+        url: /v3/api-docs/albumes
+
+      - name: Tipos Albumes
+        url: /v3/api-docs/tipos_albumes
+
+      - name: Canciones
+        url: /v3/api-docs/canciones
+
+      - name: Generos Canciones
+        url: /v3/api-docs/generos_canciones
+
+      - name: Reportes
+        url: /v3/api-docs/reportes
+
+      - name: Estados Reportes
+        url: /v3/api-docs/estados_reportes
+
+      - name: Tipos Reportes
+        url: /v3/api-docs/tipos_reportes
+
+      - name: Suscripciones
+        url: /v3/api-docs/suscripciones
+
+      - name: Planes
+        url: /v3/api-docs/planes
+
+      - name: Reproducciones
+        url: /v3/api-docs/reproducciones
+
+      - name: Dispositivos Reproducciones
+        url: /v3/api-docs/dispositivos_reproducciones
+
+      - name: Playlists
+        url: /v3/api-docs/playlists
+
+      - name: Guardar Canciones Playlists
+        url: /v3/api-docs/guardar_canciones_playlists
+
+      - name: Privacidades Playlists
+        url: /v3/api-docs/privacidades_playlists

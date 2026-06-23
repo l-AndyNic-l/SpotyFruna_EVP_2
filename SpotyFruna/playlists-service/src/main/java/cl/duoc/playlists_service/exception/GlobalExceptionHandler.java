@@ -1,5 +1,6 @@
 package cl.duoc.playlists_service.exception;
 
+import cl.duoc.playlists_service.dto.ErrorResponse;
 import feign.FeignException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

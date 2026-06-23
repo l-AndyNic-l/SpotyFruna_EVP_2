@@ -3,6 +3,7 @@ package cl.duoc.auth_service.controller;
 import cl.duoc.auth_service.dto.AuthDTO;
 import cl.duoc.auth_service.model.Auth;
 import cl.duoc.auth_service.service.AuthService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/registros")
+@Tag(name = "REGISTROS", description = "API PARA LA GESTIÓN DE REGISTROS")
 public class AuthController {
 
     @Autowired

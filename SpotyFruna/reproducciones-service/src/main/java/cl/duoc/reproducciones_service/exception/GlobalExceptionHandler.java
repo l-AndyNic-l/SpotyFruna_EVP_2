@@ -1,5 +1,6 @@
 package cl.duoc.reproducciones_service.exception;
 
+import cl.duoc.reproducciones_service.dto.ErrorResponse;
 import feign.FeignException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

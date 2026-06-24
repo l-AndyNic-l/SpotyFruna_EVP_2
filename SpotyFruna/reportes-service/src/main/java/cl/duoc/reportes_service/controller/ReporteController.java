@@ -3,6 +3,7 @@ package cl.duoc.reportes_service.controller;
 import cl.duoc.reportes_service.model.Reporte;
 import cl.duoc.reportes_service.dto.ReporteDTO;
 import cl.duoc.reportes_service.service.ReporteService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/reportes")
+@Tag(name = "REPORTES", description = "API PARA LA GESTIÓN DE ESTADOS DE REPORTES")
 public class ReporteController {
 
     @Autowired

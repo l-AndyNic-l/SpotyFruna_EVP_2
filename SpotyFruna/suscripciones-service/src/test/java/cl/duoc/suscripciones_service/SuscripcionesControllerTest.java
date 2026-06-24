@@ -218,9 +218,9 @@ public class SuscripcionesControllerTest {
     @Test
     @DisplayName("DELETE /api/v1/suscripciones/{id} - Debería retornar 204 NO CONTENT")
     public void deleteSuscripcion() throws Exception {
-
         Long idSuscripcion = 1L;
-        when(suscripcionService.findById(idSuscripcion)).thenReturn(suscripcionDTO);
+
+        Mockito.doNothing().when(suscripcionService).deleteById(idSuscripcion);
 
         mockMvc.perform(delete("/api/v1/suscripciones/" + idSuscripcion))
                 .andExpect(status().isNoContent());

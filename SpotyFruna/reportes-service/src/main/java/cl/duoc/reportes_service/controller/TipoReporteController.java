@@ -2,6 +2,7 @@ package cl.duoc.reportes_service.controller;
 
 import cl.duoc.reportes_service.model.TipoReporte;
 import cl.duoc.reportes_service.service.TipoReporteService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/tipos_reportes")
+@Tag(name = "TIPOS DE REPORTE", description = "API PARA LA GESTIÓN DE ESTADOS DE TIPOS DE REPORTE")
 public class TipoReporteController {
 
     @Autowired

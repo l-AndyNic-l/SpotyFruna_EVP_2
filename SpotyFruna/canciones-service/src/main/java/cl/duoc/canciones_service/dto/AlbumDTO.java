@@ -54,11 +54,6 @@ public class AlbumDTO {
     )
     private String tipoAlbum;
 
-    @Schema(
-            description = "Listado de canciones asociadas al álbum"
-    )
-    private List<AlbumCancionDTO> canciones;
-
 }
 
 

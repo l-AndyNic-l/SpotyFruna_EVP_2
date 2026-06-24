@@ -65,7 +65,7 @@ public class SuscripcionController {
         return ResponseEntity.ok(suscripciones);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{idSuscripcion}")
     public ResponseEntity<SuscripcionDTO> findById(@PathVariable Long idSuscripcion) {
         SuscripcionDTO suscripcion = suscripcionService.findById(idSuscripcion);
 
@@ -78,13 +78,13 @@ public class SuscripcionController {
         return new ResponseEntity<>(suscripcionInstanciada, HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{idSuscripcion}")
     public ResponseEntity<Suscripcion> update(@PathVariable Long idSuscripcion, @Valid @RequestBody Suscripcion suscripcion ) {
         Suscripcion suscripcionInstanciada = suscripcionService.update(idSuscripcion, suscripcion);
         return ResponseEntity.ok(suscripcionInstanciada);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{idSuscripcion}")
     public ResponseEntity<Void> delete(@PathVariable Long idSuscripcion) {
         suscripcionService.deleteById(idSuscripcion);
         return ResponseEntity.noContent().build();

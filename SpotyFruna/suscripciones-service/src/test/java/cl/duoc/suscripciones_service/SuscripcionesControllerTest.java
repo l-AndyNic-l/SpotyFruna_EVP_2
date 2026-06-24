@@ -2,16 +2,19 @@ package cl.duoc.suscripciones_service;
 
 import cl.duoc.suscripciones_service.controller.SuscripcionController;
 import cl.duoc.suscripciones_service.dto.SuscripcionDTO;
+import cl.duoc.suscripciones_service.dto.UsuarioDTO;
+import cl.duoc.suscripciones_service.model.Plan;
 import cl.duoc.suscripciones_service.model.Suscripcion;
 import cl.duoc.suscripciones_service.service.SuscripcionService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.MediaType;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultMatcher;
@@ -22,12 +25,14 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(SuscripcionController.class)
-@DisplayName("Pruebas Unitarias para SuscripcionController")
+@DisplayName("Pruebas unitarias para SuscripcionesController")
 public class SuscripcionesControllerTest {
 
     @Autowired
@@ -36,112 +41,189 @@ public class SuscripcionesControllerTest {
     @MockitoBean
     private SuscripcionService suscripcionService;
 
+    private Suscripcion suscripcion;
+    private Suscripcion suscripcionSinID;
+    private SuscripcionDTO suscripcionDTO;
+    private UsuarioDTO usuarioDTO;
+    private Plan plan;
+
+    @BeforeEach
+    public void setUpUsuarioDTO() {
+        usuarioDTO = new UsuarioDTO(
+                1L,
+                "Freddy Mercury",
+                "Queen",
+                "freddy.queen@gmail.com",
+                40,
+                1232342334,
+                "Artista"
+        );
+    }
+
+    @BeforeEach
+    public void setUpPlan() {
+        plan = new Plan(
+                1L,
+                "Familiar",
+                11990,
+                false,
+                1000.0
+        );
+    }
+
+    @BeforeEach
+    public void setUpSuscripcion() {
+        suscripcion = new Suscripcion(
+                1L,
+                LocalDate.of(2024, 1, 1),
+                LocalDate.of(2026, 1, 1),
+                false,
+                plan,
+                1L
+        );
+
+        suscripcionSinID = new Suscripcion(
+                null,
+                LocalDate.of(2024, 1, 1),
+                LocalDate.of(2026, 1, 1),
+                false,
+                plan,
+                1L
+        );
+    }
+
+    @BeforeEach
+    public void setUpSuscripcionDTO() {
+        suscripcionDTO = new SuscripcionDTO(
+                1L,
+                "01/01/2024",
+                "01/01/2026",
+                "No Activa",
+                "Familiar",
+                "Freddy Mercury"
+        );
+    }
+
     @Autowired
     private ObjectMapper objectMapper;
 
     @Test
-    @DisplayName("Debe retornar todas las suscripciones")
-    void testFindAll() throws Exception {
-        SuscripcionDTO dto = new SuscripcionDTO();
-        dto.setId(1L);
-        Mockito.when(suscripcionService.findAll()).thenReturn(Arrays.asList(dto));
+    @DisplayName("GET /api/v1/suscripciones - Debería retornar 200 OK y la lista de suscripciones")
+    public void findAllSuscripciones() throws Exception {
+
+        when(suscripcionService.findAll()).thenReturn(List.of(suscripcionDTO));
 
         mockMvc.perform(get("/api/v1/suscripciones"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].id").value(1L));
+                .andExpect(jsonPath("$[0].id").value(1))
+                .andExpect(jsonPath("$[0].fechaInicio").value("01/01/2024"))
+                .andExpect(jsonPath("$[0].fechaTermino").value("01/01/2026"))
+                .andExpect(jsonPath("$[0].activado").value("No Activa"))
+                .andExpect(jsonPath("$[0].plan").value(plan.getNombre()))
+                .andExpect(jsonPath("$[0].usuario").value(usuarioDTO.getNombreCompleto()));
+
     }
 
     @Test
-    @DisplayName("Debe retornar 204 si no hay suscripciones")
-    void testFindAllEmpty() throws Exception {
-        Mockito.when(suscripcionService.findAll()).thenReturn(Collections.emptyList());
+    @DisplayName("GET /api/v1/suscripciones/between-dates - Debería retornar 200 OK y la lista de suscripciones según su rango de fecha")
+    public void findAllBetweenDatesSuscripciones() throws Exception {
 
-        mockMvc.perform(get("/api/v1/suscripciones"))
-                .andExpect(status().isNoContent());
-    }
+        LocalDate fechaMin = LocalDate.of(2020, 1, 1);
+        LocalDate fechaMax = LocalDate.of(2026, 1, 1);
+        when(suscripcionService.findAllBetweenDates(fechaMin, fechaMax)).thenReturn(List.of(suscripcionDTO));
 
-    @Test
-    @DisplayName("Debe buscar por ID correctamente")
-    void testFindById() throws Exception {
-        Long id = 1L;
-        SuscripcionDTO dto = new SuscripcionDTO();
-        dto.setId(id);
-        Mockito.when(suscripcionService.findById(id)).thenReturn(dto);
-
-        mockMvc.perform(get("/api/v1/suscripciones/{id}", id))
+        mockMvc.perform(get("/api/v1/suscripciones/between-dates").param("fecha-min", String.valueOf(fechaMin)).param("fecha-max", String.valueOf(fechaMax)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(id));
+                .andExpect(jsonPath("$[0].id").value(1))
+                .andExpect(jsonPath("$[0].fechaInicio").value("01/01/2024"))
+                .andExpect(jsonPath("$[0].fechaTermino").value("01/01/2026"))
+                .andExpect(jsonPath("$[0].activado").value("No Activa"))
+                .andExpect(jsonPath("$[0].plan").value(plan.getNombre()))
+                .andExpect(jsonPath("$[0].usuario").value(usuarioDTO.getNombreCompleto()));
+
     }
 
     @Test
-    @DisplayName("Debe buscar por Plan")
-    void testFindByPlan() throws Exception {
+    @DisplayName("GET /api/v1/suscripciones/plan/{idPlan} - Debería retornar 200 OK y la lista de suscripciones según el plan")
+    public void findByPlanSuscripciones() throws Exception {
+
         Long idPlan = 1L;
-        SuscripcionDTO dto = new SuscripcionDTO();
-        dto.setId(100L);
-        Mockito.when(suscripcionService.findAllByPlan(idPlan)).thenReturn(Arrays.asList(dto));
+        when(suscripcionService.findAllByPlan(idPlan)).thenReturn(List.of(suscripcionDTO));
 
-        mockMvc.perform(get("/api/v1/suscripciones/plan/{idPlan}", idPlan))
+        mockMvc.perform(get("/api/v1/suscripciones/plan/" + idPlan))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].id").value(100L));
+                .andExpect(jsonPath("$[0].id").value(1))
+                .andExpect(jsonPath("$[0].fechaInicio").value("01/01/2024"))
+                .andExpect(jsonPath("$[0].fechaTermino").value("01/01/2026"))
+                .andExpect(jsonPath("$[0].activado").value("No Activa"))
+                .andExpect(jsonPath("$[0].plan").value(plan.getNombre()))
+                .andExpect(jsonPath("$[0].usuario").value(usuarioDTO.getNombreCompleto()));
+
     }
 
     @Test
-    @DisplayName("Debe buscar entre fechas")
-    void testBetweenDates() throws Exception {
-        LocalDate fMin = LocalDate.of(2026, 1, 1);
-        LocalDate fMax = LocalDate.of(2026, 12, 31);
-        Mockito.when(suscripcionService.findAllBetweenDates(fMin, fMax))
-                .thenReturn(Arrays.asList(new SuscripcionDTO()));
+    @DisplayName("GET /api/v1/suscripciones/activado - Debería retornar 200 OK y la lista de suscripciones según su actividad")
+    public void findByActivadoSuscripciones() throws Exception {
 
-        mockMvc.perform(get("/api/v1/suscripciones/between-dates")
-                        .param("fecha-min", "2026-01-01")
-                        .param("fecha-max", "2026-12-31"))
-                .andExpect(status().isOk());
+        Boolean activado = true;
+        when(suscripcionService.findAllByActivado(activado)).thenReturn(List.of(suscripcionDTO));
+
+        mockMvc.perform(get("/api/v1/suscripciones/activado").param("activado", String.valueOf(activado)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].id").value(1))
+                .andExpect(jsonPath("$[0].fechaInicio").value("01/01/2024"))
+                .andExpect(jsonPath("$[0].fechaTermino").value("01/01/2026"))
+                .andExpect(jsonPath("$[0].activado").value("No Activa"))
+                .andExpect(jsonPath("$[0].plan").value(plan.getNombre()))
+                .andExpect(jsonPath("$[0].usuario").value(usuarioDTO.getNombreCompleto()));
     }
 
     @Test
-    @DisplayName("Debe guardar una suscripción (POST)")
-    void testSave() throws Exception {
-        Suscripcion input = new Suscripcion();
-        input.setActivado(true);
+    @DisplayName("GET /api/v1/suscripciones/{id} - Debería retornar 200 OK y la suscripcion según ID")
+    public void findByIdSuscripcion() throws Exception {
 
-        Suscripcion output = new Suscripcion();
-        output.setId(10L);
+        Long idSuscripcion = 1L;
+        when(suscripcionService.findById(idSuscripcion)).thenReturn(suscripcionDTO);
 
-        Mockito.when(suscripcionService.save(Mockito.any(Suscripcion.class))).thenReturn(output);
+        mockMvc.perform(get("/api/v1/suscripciones/" + idSuscripcion))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(1))
+                .andExpect(jsonPath("$.fechaInicio").value("01/01/2024"))
+                .andExpect(jsonPath("$.fechaTermino").value("01/01/2026"))
+                .andExpect(jsonPath("$.activado").value("No Activa"))
+                .andExpect(jsonPath("$.plan").value(plan.getNombre()))
+                .andExpect(jsonPath("$.usuario").value(usuarioDTO.getNombreCompleto()));
+
+    }
+
+    @Test
+    @DisplayName("POST /api/v1/suscripciones - Debería retornar 201 CREATED y la suscripcion creado")
+    void postSuscripcion() throws Exception {
+
+        when(suscripcionService.save(any(Suscripcion.class))).thenReturn(suscripcion);
 
         mockMvc.perform(post("/api/v1/suscripciones")
-                        .contentType(String.valueOf(MediaType.APPLICATION_JSON))
-                        .content(objectMapper.writeValueAsString(input)))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(suscripcionSinID)))
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.id").value(10L));
+                .andExpect(jsonPath("$.id").value(1))
+                .andExpect(jsonPath("$.fechaInicio").value("2024-01-01"))
+                .andExpect(jsonPath("$.fechaTermino").value("2026-01-01"))
+                .andExpect(jsonPath("$.activado").value(false))
+                .andExpect(jsonPath("$.plan").value(suscripcion.getPlan()))
+                .andExpect(jsonPath("$.idUsuario").value(suscripcion.getIdUsuario()));
+
     }
 
     @Test
-    @DisplayName("Debe actualizar una suscripción (PUT)")
-    void testUpdate() throws Exception {
-        Long id = 1L;
-        Suscripcion input = new Suscripcion();
-        Suscripcion output = new Suscripcion();
-        output.setId(id);
+    @DisplayName("DELETE /api/v1/suscripciones/{id} - Debería retornar 204 NO CONTENT")
+    public void deleteSuscripcion() throws Exception {
 
-        Mockito.when(suscripcionService.update(Mockito.eq(id), Mockito.any(Suscripcion.class))).thenReturn(output);
+        Long idSuscripcion = 1L;
+        when(suscripcionService.findById(idSuscripcion)).thenReturn(suscripcionDTO);
 
-        mockMvc.perform(put("/api/v1/suscripciones/{id}", id)
-                        .contentType(String.valueOf(MediaType.APPLICATION_JSON))
-                        .content(objectMapper.writeValueAsString(input)))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(id));
-    }
-
-    @Test
-    @DisplayName("Debe eliminar una suscripción (DELETE)")
-    void testDelete() throws Exception {
-        Long id = 1L;
-        Mockito.doNothing().when(suscripcionService).deleteById(id);
-
-        mockMvc.perform(delete("/api/v1/suscripciones/{id}", id))
+        mockMvc.perform(delete("/api/v1/suscripciones/" + idSuscripcion))
                 .andExpect(status().isNoContent());
     }
+
 }

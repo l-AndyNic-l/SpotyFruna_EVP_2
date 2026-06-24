@@ -2,6 +2,7 @@
 services:
 ################################################################################
   mysql-db:
+    restart: always
     image: mysql:8.0
     container_name: mysql_database
     environment:
@@ -13,14 +14,21 @@ services:
       - mysql_data:/var/lib/mysql
 ################################################################################
   eureka:
+    restart: always
     build:
       context: ./eureka-service
       dockerfile: Dockerfile
     container_name: eureka
     ports:
       - "8761:8761"
+    depends_on:
+      mysql-db:
+        condition: service_started
+      config-server:
+        condition: service_started
 ################################################################################
   config-server:
+    restart: always
     build:
       context: ./config-server
       dockerfile: Dockerfile
@@ -32,8 +40,12 @@ services:
       CONFIG_SEARCH_LOCATIONS: file:/config-microservicios
     volumes:
       - ./config-microservicios:/config-microservicios
+    depends_on:
+      mysql-db:
+        condition: service_started
 ################################################################################
   usuarios-service:
+    restart: always
     build:
       context: ./usuarios-service
       dockerfile: Dockerfile
@@ -44,8 +56,16 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/bd_usuarios
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
+    depends_on:
+      mysql-db:
+        condition: service_started
+      config-server:
+        condition: service_started
+      eureka:
+        condition: service_started
 ################################################################################
   auth-service:
+    restart: always
     build:
       context: ./auth-service
       dockerfile: Dockerfile
@@ -56,8 +76,18 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/bd_registros
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
+    depends_on:
+      mysql-db:
+        condition: service_started
+      config-server:
+        condition: service_started
+      eureka:
+        condition: service_started
+      usuarios-service:
+        condition: service_started
 ################################################################################
   suscripciones-service:
+    restart: always
     build:
       context: ./suscripciones-service
       dockerfile: Dockerfile
@@ -68,8 +98,18 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/bd_suscripciones
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
+    depends_on:
+      mysql-db:
+        condition: service_started
+      config-server:
+        condition: service_started
+      eureka:
+        condition: service_started
+      usuarios-service:
+        condition: service_started
 ################################################################################
   reportes-service:
+    restart: always
     build:
       context: ./reportes-service
       dockerfile: Dockerfile
@@ -80,8 +120,18 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/bd_reportes
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
+    depends_on:
+      mysql-db:
+        condition: service_started
+      config-server:
+        condition: service_started
+      eureka:
+        condition: service_started
+      usuarios-service:
+        condition: service_started
 ################################################################################
   canciones-service:
+    restart: always
     build:
       context: ./canciones-service
       dockerfile: Dockerfile
@@ -92,8 +142,18 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/bd_canciones
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
+    depends_on:
+      mysql-db:
+        condition: service_started
+      config-server:
+        condition: service_started
+      eureka:
+        condition: service_started
+      usuarios-service:
+        condition: service_started
 ################################################################################
   albumes-service:
+    restart: always
     build:
       context: ./albumes-service
       dockerfile: Dockerfile
@@ -104,8 +164,20 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/bd_albumes
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
+    depends_on:
+      mysql-db:
+        condition: service_started
+      config-server:
+        condition: service_started
+      eureka:
+        condition: service_started
+      usuarios-service:
+        condition: service_started
+      canciones-service:
+        condition: service_started
 ################################################################################
   playlists-service:
+    restart: always
     build:
       context: ./playlists-service
       dockerfile: Dockerfile
@@ -116,8 +188,22 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/bd_playlists
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
+    depends_on:
+      mysql-db:
+        condition: service_started
+      config-server:
+        condition: service_started
+      eureka:
+        condition: service_started
+      usuarios-service:
+        condition: service_started
+      canciones-service:
+        condition: service_started
+      albumes-service:
+        condition: service_started
 ################################################################################
   reproducciones-service:
+    restart: always
     build:
       context: ./reproducciones-service
       dockerfile: Dockerfile
@@ -128,8 +214,22 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/bd_reproducciones
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
+    depends_on:
+      mysql-db:
+        condition: service_started
+      config-server:
+        condition: service_started
+      eureka:
+        condition: service_started
+      usuarios-service:
+        condition: service_started
+      canciones-service:
+        condition: service_started
+      albumes-service:
+        condition: service_started
 ################################################################################
   api-gateway:
+    restart: always
     build:
       context: ./api-gateway
       dockerfile: Dockerfile

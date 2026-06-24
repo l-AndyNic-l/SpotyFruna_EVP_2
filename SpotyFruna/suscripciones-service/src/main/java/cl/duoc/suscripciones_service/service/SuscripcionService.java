@@ -188,7 +188,7 @@ public class SuscripcionService {
     }
 
     public void deleteById(Long idSuscripcion) {
-        if(!suscripcionRepository.existsById(idSuscripcion)) {
+        if(suscripcionRepository.findById(idSuscripcion) == null) {
             throw new ResourceNotFoundException("Suscripción no encontrada");
         }
         suscripcionRepository.deleteById(idSuscripcion);

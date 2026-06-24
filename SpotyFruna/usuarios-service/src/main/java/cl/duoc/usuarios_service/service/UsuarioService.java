@@ -29,7 +29,6 @@ public class UsuarioService {
     private UsuarioMapper mapper;
 
 
-
     public List<UsuarioDTO> findAll() {
         List<UsuarioDTO> usuariosDTO = new ArrayList<>();
 
@@ -61,9 +60,10 @@ public class UsuarioService {
         }
 
         for (Usuario usuario : usuarioRepository.findAll()) {
-            if (Objects.equals(usuario.getTipoUsuario().getId(), idTipoUsuario)) {
-                UsuarioDTO usuarioDTO = mapper.toDTO(usuario);
-                usuariosDTO.add(usuarioDTO);
+            if (usuario.getTipoUsuario() != null &&
+                    Objects.equals(usuario.getTipoUsuario().getId(), idTipoUsuario)) {
+
+                usuariosDTO.add(mapper.toDTO(usuario));
             }
         }
 
@@ -146,7 +146,7 @@ public class UsuarioService {
     }
 
     public void deleteById(Long idUsuario) {
-        if(!usuarioRepository.existsById(idUsuario)) {
+        if(usuarioRepository.findById(idUsuario) == null) {
             throw new ResourceNotFoundException("Usuario no encontrado");
         }
         usuarioRepository.deleteById(idUsuario);

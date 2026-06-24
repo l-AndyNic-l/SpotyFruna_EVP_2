@@ -222,7 +222,7 @@ public class CancionService {
     }
 
     public void deleteById(Long idCancion) {
-        if(!cancionRepository.existsById(idCancion)) {
+        if(cancionRepository.findById(idCancion) == null) {
             throw new ResourceNotFoundException("Canción no encontrada");
         }
         cancionRepository.deleteById(idCancion);

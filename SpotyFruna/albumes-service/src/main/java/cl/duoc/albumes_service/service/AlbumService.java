@@ -242,7 +242,7 @@ public class AlbumService {
     }
 
     public void deleteById(Long idAlbum) {
-        if(!albumRepository.existsById(idAlbum)) {
+        if(albumRepository.findById(idAlbum) == null) {
             throw new ResourceNotFoundException("Álbum no encontrado");
         }
         albumRepository.deleteById(idAlbum);
